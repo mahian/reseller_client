@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { authContext } from '../../context/UserContext';
 
 const Nav = () => {
+    const {user} = useContext(authContext);
     const navMenu = <>
         <li><Link to="/">Home</Link></li>
     </>
