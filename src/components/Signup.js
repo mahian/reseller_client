@@ -1,30 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { authContext } from '../context/UserContext';
 
 const Signup = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {createUser} = useContext(authContext);
+    const onSubmit = data => {
+        createUser(data.email, data.password)
+        .then(res => console.log(res))
+        .then(err => console.log(err))
+    }
     return (
-        <div className='container px-3 mx-auto my-10'>
+        <div className='container px-3 mx-auto py-20'>
             <div className="card w-full">
                 <h2 className="text-2xl font-bold">Sign up</h2>
                 <p className='my-3 text-gray-400'>already have an account? <Link className='text-primary hover:underline' to="../login">Login</Link></p>
-                <form className="">
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input type="text" placeholder="Name" className="input input-bordered" />
+                        <input {...register("name", { required: true })} type="text" placeholder="Name" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" placeholder="email" className="input input-bordered" />
+                        <input {...register("email", { required: true })} type="email" placeholder="email" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="text" placeholder="password" className="input input-bordered" />
+                        <input {...register("password", { required: true })} type="text" placeholder="password" className="input input-bordered" />
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-primary">sign up</button>

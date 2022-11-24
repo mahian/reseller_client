@@ -76,7 +76,7 @@ export default function AddProduct() {
                     </div>
 
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary">sign up</button>
+                        <button className="btn btn-primary">Add product</button>
                     </div>
                 </form>
             </div>
