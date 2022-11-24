@@ -17,7 +17,7 @@ const Nav = () => {
                             {navMenu}
                         </ul>
                     </div>
-                    <Link className="btn btn-ghost normal-case text-xl">RESELLER</Link>
+                    <Link to="/" className="text-xl bg-primary p-2 rounded-lg font-bold text-white">RESELLER</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">

@@ -22,7 +22,7 @@ const CategoriesHome = () => {
     return (
         <div className='container mx-auto px-3 my-20'>
             <SectionTitle title="Categories" />
-            <div className='grid gap-5 mt-5'>
+            <div className='grid md:grid-cols-3 gap-5 mt-10'>
                 {
                     CategoriesData.map(category => <div id={category._id} className="card bg-primary text-white shadow-xl">
                         <figure className="px-10 pt-10">
