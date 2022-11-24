@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionTitle from '../../utilitys/SectionTitle';
+import SectionTitle from '../../utilities/SectionTitle';
 
 const CategoriesHome = () => {
     const CategoriesData = [
