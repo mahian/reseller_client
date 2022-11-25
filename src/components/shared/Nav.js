@@ -12,6 +12,8 @@ const Nav = () => {
     }
     const navMenu = <>
         <li><Link to="/">Home</Link></li>
+        <li><Link to="../products">Shop</Link></li>
+        <li><Link to="../my-products">My products</Link></li>
     </>
     return (
         <div className='container mx-auto'>

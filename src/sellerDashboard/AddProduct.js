@@ -23,7 +23,10 @@ export default function AddProduct() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         })
-        .then(res => console.log('response complete : ', res))
+        .then(res => {
+            console.log('response complete : ', res);
+            form.reset();
+        })
         .then(data => console.log(data))
     }
 
