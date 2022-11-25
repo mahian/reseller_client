@@ -25,8 +25,8 @@ const MyProducts = () => {
                         </thead>
                         <tbody>
                             {
-                                products.map(product => <tr key={product._id}>
-                                    <th>1</th>
+                                products.map((product, index) => <tr key={product._id}>
+                                    <th>{index + 1}</th>
                                     <td>Cy Ganderton</td>
                                     <td>Quality Control Specialist</td>
                                     <td>Blue</td>
