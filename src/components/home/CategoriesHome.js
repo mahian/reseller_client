@@ -6,17 +6,17 @@ const CategoriesHome = () => {
     const CategoriesData = [
         {
             _id: 1,
-            name: "name",
+            name: "full pc",
             image: "https://www.bdstall.com/asset/product-image/giant_135029.jpg"
         },
         {
             _id: 2,
-            name: "name",
+            name: "parts and component",
             image: "https://www.bdstall.com/asset/product-image/giant_135029.jpg"
         },
         {
             _id: 3,
-            name: "name",
+            name: "monitor",
             image: "https://www.bdstall.com/asset/product-image/giant_135029.jpg"
         },
     ]
@@ -25,13 +25,9 @@ const CategoriesHome = () => {
             <SectionTitle title="Categories" />
             <div className='grid md:grid-cols-3 gap-5 mt-10'>
                 {
-                    CategoriesData.map(category => <Link to="products" id={category._id}><div className="card bg-primary text-white shadow-xl">
-                        <figure className="px-10 pt-10">
-                            <img src={category.image} alt="Shoes" className="rounded-xl w-full" />
-                        </figure>
-                        <div className="card-body items-center text-center">
-                            <h2 className="card-title text-3xl">{category.name}</h2>
-                        </div>
+                    CategoriesData.map(category => <Link to="products" id={category._id}><div className="flex items-center p-10 rounded-md bg-primary text-white shadow-xl">
+                        <img src={category.image} alt="Shoes" className="rounded-full w-28 h-28" />
+                        <h2 className="text-3xl font-bold">{category.name}</h2>
                     </div></Link>)
                 }
 
