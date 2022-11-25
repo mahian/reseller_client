@@ -16,6 +16,8 @@ const Nav = () => {
         <li><Link to="../my-products">My products</Link></li>
         <li><Link to="../all-products">All products</Link></li>
         <li><Link to="../all-users">All users</Link></li>
+        <li><Link to="../dashboard">Dashboard</Link></li>
+        <li><Link to="../spinner">spinner</Link></li>
     </>
     return (
         <div className='container mx-auto'>

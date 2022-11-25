@@ -9,6 +9,7 @@ export default function AddProduct() {
         const condition = form.condition.value;
         const phone = form.phone.value;
         const location = form.location.value;
+        const image = form.files;
         const formData = {
             title,
             desc,
@@ -16,6 +17,7 @@ export default function AddProduct() {
             condition,
             phone,
             location,
+            image
         }
         console.log(formData);
         fetch('http://localhost:5000/products', {
@@ -76,6 +78,13 @@ export default function AddProduct() {
                             <span className="label-text">Location</span>
                         </label>
                         <input name="location" type="address" className="input input-bordered" />
+                    </div>
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Product image</span>
+                        </label>
+                        <input name="image" type="file" className="input input-bordered" />
                     </div>
 
                     <div className="form-control mt-6">

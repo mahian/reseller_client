@@ -9,6 +9,8 @@ import Main from './layout/Main';
 import AddProduct from './sellerDashboard/AddProduct';
 import AllProducts from './components/adminDashboard/AllProducts';
 import AllUsers from './components/adminDashboard/AllUsers';
+import AdminDashboard from './layout/AdminDashboard';
+import Spinner from './utilities/Spinner';
 
 function App() {
   const router = createBrowserRouter([
@@ -23,9 +25,16 @@ function App() {
         {path: 'products', element: <Products/>},
         {path: 'my-products', element: <MyProducts/>},
         {path: 'all-products', element: <AllProducts/>},
+        {path: 'spinner', element: <Spinner/>},
+      ]
+    },
+    {
+      path: 'dashboard', 
+      element: <AdminDashboard/>,
+      children: [
         {path: 'all-users', element: <AllUsers/>},
       ]
-    }
+    },
   ])
   return (
     <div className="App">
