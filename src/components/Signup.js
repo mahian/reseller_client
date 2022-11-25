@@ -5,11 +5,20 @@ import { authContext } from '../context/UserContext';
 
 const Signup = () => {
     const { register, handleSubmit } = useForm();
-    const {createUser} = useContext(authContext);
+    const { createUser } = useContext(authContext);
     const onSubmit = data => {
         createUser(data.email, data.password)
-        .then(res => console.log(res))
-        .then(err => console.log(err))
+            .then(res => {
+                console.log(res);
+                fetch("http://localhost:5000/users", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                }).then(res => {
+                    console.log("Request complete! response:", res);
+                });
+            })
+            .then(err => console.log(err))
     }
     return (
         <div className='container px-3 mx-auto py-20'>
