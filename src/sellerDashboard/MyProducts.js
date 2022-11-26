@@ -11,7 +11,7 @@ const MyProducts = () => {
         }
     });
     return (
-        <section className='bg-gray-100 py-20'>
+        <section className='bg-gray-100 min-h-screen py-20'>
             <div className='container mx-auto px-3'>
                 <div className="overflow-x-auto">
                     <table className="table table-zebra w-full">

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../context/UserContext';
+import useSeller from '../../hook/useSeller';
 
 const Nav = () => {
     const { user, logOut } = useContext(authContext);
-    console.log(user);
+    const [isSeller] = useSeller(user?.email)
     const handleLogout = () => {
         logOut()
             .then(res => console.log(res))
@@ -13,6 +14,7 @@ const Nav = () => {
     const navMenu = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="../products">Shop</Link></li>
+        <li><Link to="../blog">blog</Link></li>
         <li><Link to="../my-products">My products</Link></li>
         <li><Link to="../all-products">All products</Link></li>
         <li><Link to="../all-users">All users</Link></li>
@@ -39,6 +41,11 @@ const Nav = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    {
+                        !isSeller?
+                        <p>buyer</p>:
+                        <p>seller</p>
+                    }
                     {
                         !user ?
                             <Link to="../signup" className="btn">Sign up</Link> :

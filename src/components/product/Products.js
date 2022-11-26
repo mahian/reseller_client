@@ -13,7 +13,7 @@ const Products = () => {
         }
     });
     return (
-        <section className='bg-gray-100 '>
+        <section className='bg-gray-100 min-h-screen'>
             <div className='container mx-auto px-3 py-10 grid md:grid-cols-3 lg:grid-cols-4 gap-5'>
                 <div>
                     <div className='p-10 bg-white flex'>

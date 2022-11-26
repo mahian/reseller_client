@@ -10,6 +10,12 @@ const AllUsers = () => {
             return data;
         }
     });
+    const handleDelete = id =>{
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => console.log(res))
+    }
     return (
         <section className='bg-gray-100 py-20'>
             <div className='container mx-auto px-3'>
@@ -20,7 +26,7 @@ const AllUsers = () => {
                                 <th>id</th>
                                 <th>image</th>
                                 <th>name</th>
-                                <th>category</th>
+                                <th>email</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -29,11 +35,10 @@ const AllUsers = () => {
                                 users.map((user, index) => <tr key={user._id}>
                                     <th>{index + 1}</th>
                                     <td>Cy Ganderton</td>
-                                    <td>Quality Control Specialist</td>
-                                    <td>Blue</td>
+                                    <td>{user.name}</td>
+                                    <td>{user.email}</td>
                                     <td>
-                                        <button className="btn btn-sm btn-error mr-3">delete</button>
-                                        <button className="btn btn-sm btn-success">update</button>
+                                        <button onClick={()=> handleDelete(user._id)} className="btn btn-sm btn-error mr-3">delete</button>
                                     </td>
                                 </tr>)
                             }

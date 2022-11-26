@@ -1,21 +1,25 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../context/UserContext';
+import LoginProvider from './shared/LoginProvider';
 
 const Login = () => {
-
+    const navigate = useNavigate()
     const { register, handleSubmit } = useForm();
     const {signInWithEmail} = useContext(authContext);
     const onSubmit = data => {
         signInWithEmail(data.email, data.password)
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res);
+            navigate('/');
+        })
         .then(err => console.log(err))
     }
 
     return (
         <div className='container px-3 mx-auto py-20'>
-            <div className="card w-full">
+            <div className="card w-full max-w-[500px] mx-auto">
                 <h2 className="text-2xl font-bold">Login</h2>
                 <p className='my-3 text-gray-400'>not have an account yet? <Link className='text-primary hover:underline' to="../signup">register</Link></p>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -34,6 +38,9 @@ const Login = () => {
                     <div className="form-control mt-6">
                         <button className="btn btn-primary">Login</button>
                     </div>
+
+                    <div className="divider">OR</div>
+                    <LoginProvider/>
                 </form>
             </div>
         </div>

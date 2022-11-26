@@ -12,6 +12,9 @@ import AllUsers from './components/adminDashboard/AllUsers';
 import AdminDashboard from './layout/AdminDashboard';
 import Spinner from './utilities/Spinner';
 import Error from './components/shared/Error';
+import ProductsUnderTheCategory from './components/product/ProductsUnderTheCategory';
+import PrivetRoute from './components/privetRoute/PrivetRoute';
+import SellerRoute from './components/privetRoute/SellerRoute';
 
 function App() {
   const router = createBrowserRouter([
@@ -24,8 +27,9 @@ function App() {
         {path: 'signup', element: <Signup/>},
         {path: 'add-product', element: <AddProduct/>},
         {path: 'products', element: <Products/>},
-        {path: 'my-products', element: <MyProducts/>},
-        {path: 'all-products', element: <AllProducts/>},
+        {path: 'products/:id', element: <ProductsUnderTheCategory/>},
+        {path: 'my-products', element: <SellerRoute><MyProducts/></SellerRoute>},
+        {path: 'all-products', element: <PrivetRoute><AllProducts/></PrivetRoute>},
         {path: 'spinner', element: <Spinner/>},
         {path: "*", element: <Error/>}
       ]
