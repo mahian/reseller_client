@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const AllUsers = () => {
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users');
@@ -14,7 +14,10 @@ const AllUsers = () => {
         fetch(`http://localhost:5000/users/${id}`, {
             method: 'DELETE'
         })
-        .then(res => console.log(res))
+        .then(res => {
+            refetch();
+            console.log(res)
+        })
     }
     return (
         <section className='bg-gray-100 py-20'>

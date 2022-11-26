@@ -6,14 +6,14 @@ import Spinner from '../../utilities/Spinner';
 
 const SellerRoute = ({ children }) => {
     const { user, loading } = useContext(authContext);
-    const [isSeller] = useSeller(user?.email)
-    if (loading) {
+    const [isSeller, sellerLoading] = useSeller(user?.email)
+    if (loading || sellerLoading) {
         return <Spinner />
     }
-    if (!user) {
-        return <Navigate to="../login" />
+    if (user && isSeller) {
+        return children;
     }
-    return children;
+    return <Navigate to="../login" />
 };
 
 export default SellerRoute;
