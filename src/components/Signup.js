@@ -7,19 +7,26 @@ import LoginProvider from './shared/LoginProvider';
 const Signup = () => {
     const navigate = useNavigate()
     const { register, handleSubmit } = useForm();
-    const { createUser } = useContext(authContext);
+    const { createUser, updateUser } = useContext(authContext);
     const onSubmit = data => {
         createUser(data.email, data.password)
-            .then(res => {
-                console.log(res);
-                fetch("http://localhost:5000/users", {
-                    method: "POST",
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                }).then(res => {
-                    console.log("Request complete! response:", res);
-                    navigate('/');
-                });
+            .then((res) => {
+                console.log(res.user);
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        fetch("http://localhost:5000/users", {
+                            method: "POST",
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        }).then(res => {
+                            console.log("Request complete! response:", res);
+                            navigate('/');
+                        });
+                    })
+                    .catch(err => console.log(err));
             })
             .then(err => console.log(err))
     }
@@ -65,7 +72,7 @@ const Signup = () => {
                     </div>
 
                     <div className="divider">OR</div>
-                    <LoginProvider/>
+                    <LoginProvider />
                 </form>
             </div>
         </div>

@@ -13,8 +13,9 @@ import AdminDashboard from './layout/AdminDashboard';
 import Spinner from './utilities/Spinner';
 import Error from './components/shared/Error';
 import ProductsUnderTheCategory from './components/product/ProductsUnderTheCategory';
-import PrivetRoute from './components/privetRoute/PrivetRoute';
 import SellerRoute from './components/privetRoute/SellerRoute';
+import AdminRoute from './components/privetRoute/AdminRoute';
+import SellerDashboard from './layout/SellerDashboard';
 
 function App() {
   const router = createBrowserRouter([
@@ -25,22 +26,28 @@ function App() {
         {path: '/', element: <Home/>},
         {path: 'login', element: <Login/>},
         {path: 'signup', element: <Signup/>},
-        {path: 'add-product', element: <AddProduct/>},
         {path: 'products', element: <Products/>},
         {path: 'products/:id', element: <ProductsUnderTheCategory/>},
-        {path: 'my-products', element: <SellerRoute><MyProducts/></SellerRoute>},
-        {path: 'all-products', element: <PrivetRoute><AllProducts/></PrivetRoute>},
         {path: 'spinner', element: <Spinner/>},
         {path: "*", element: <Error/>}
       ]
     },
     {
       path: 'dashboard', 
-      element: <AdminDashboard/>,
+      element: <AdminRoute><AdminDashboard/></AdminRoute>,
       children: [
-        {path: 'all-users', element: <AllUsers/>},
+        {path: 'all-users', element: <AdminRoute><AllUsers/></AdminRoute>},
+        {path: 'all-products', element: <AdminRoute><AllProducts/></AdminRoute>},
       ]
     },
+    {
+      path: 'seller-dashboard',
+      element: <SellerRoute><SellerDashboard/></SellerRoute>,
+      children: [
+        {path: 'add-product', element: <SellerRoute><AddProduct/></SellerRoute>},
+        {path: 'my-products', element: <SellerRoute><MyProducts/></SellerRoute>},
+      ]
+    }
   ])
   return (
     <div className="App">

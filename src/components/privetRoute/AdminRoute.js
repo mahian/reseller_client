@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { authContext } from '../../context/UserContext';
+import useSeller from '../../hook/useSeller';
 import Spinner from '../../utilities/Spinner';
 
-const PrivetRoute = ({ children }) => {
+const AdminRoute = ({ children }) => {
     const { user, loading } = useContext(authContext);
-    if (loading) {
+    const [isAdmin, adminLoading] = useSeller(user?.email)
+    if (loading || adminLoading) {
         return <Spinner />
     }
-    if (user) {
+    if (user && isAdmin) {
         return children;
     }
     return <Navigate to="../login" />;
 };
 
-export default PrivetRoute;
+export default AdminRoute;

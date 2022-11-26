@@ -13,7 +13,7 @@ const SellerRoute = ({ children }) => {
     if (user && isSeller) {
         return children;
     }
-    return <Navigate to="../login" />
+    return <Navigate to="../login" />;
 };
 
 export default SellerRoute;
