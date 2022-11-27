@@ -8,27 +8,52 @@ const Signup = () => {
     const navigate = useNavigate()
     const { register, handleSubmit } = useForm();
     const { createUser, updateUser } = useContext(authContext);
+    const imageHostKey = process.env.REACT_APP_imagebb_key;
     const onSubmit = data => {
-        createUser(data.email, data.password)
-            .then((res) => {
-                console.log(res.user);
-                const userInfo = {
-                    displayName: data.name
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        console.log(formData);
+        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                console.log(imgData);
+                if (imgData.success) {
+                    const thisUser = {
+                        name: data.name,
+                        email: data.email,
+                        password: data.password,
+                        role: data.role,
+                        image: imgData.data.url
+                    }
+
+                    createUser(data.email, data.password)
+                        .then((res) => {
+                            console.log(res.user);
+                            const userInfo = {
+                                displayName: data.name,
+                                photoURL: thisUser.image
+                            }
+                            updateUser(userInfo)
+                                .then(() => {
+                                    fetch("http://localhost:5000/users", {
+                                        method: "POST",
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify(thisUser)
+                                    }).then(res => {
+                                        console.log("Request complete! response:", res);
+                                        navigate('/');
+                                    });
+                                })
+                                .catch(err => console.log(err));
+                        })
+                        .then(err => console.log(err))
                 }
-                updateUser(userInfo)
-                    .then(() => {
-                        fetch("http://localhost:5000/users", {
-                            method: "POST",
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(data)
-                        }).then(res => {
-                            console.log("Request complete! response:", res);
-                            navigate('/');
-                        });
-                    })
-                    .catch(err => console.log(err));
             })
-            .then(err => console.log(err))
     }
     return (
         <div className='container px-3 mx-auto py-20'>
@@ -65,6 +90,13 @@ const Signup = () => {
                             <span className="label-text">Password</span>
                         </label>
                         <input {...register("password", { required: true })} type="text" placeholder="password" className="input input-bordered" />
+                    </div>
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Profile Image</span>
+                        </label>
+                        <input {...register("image", { required: true })} type="file" className="file-input file-input-bordered" />
                     </div>
 
                     <div className="form-control mt-6">

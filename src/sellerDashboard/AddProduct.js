@@ -1,3 +1,5 @@
+const imageHostKey = process.env.REACT_APP_imagebb_key;
+
 export default function AddProduct() {
 
     const handleSubmit = e => {
@@ -9,27 +11,41 @@ export default function AddProduct() {
         const condition = form.condition.value;
         const phone = form.phone.value;
         const location = form.location.value;
-        const image = form.files;
-        const formData = {
-            title,
-            desc,
-            price,
-            condition,
-            phone,
-            location,
-            image
-        }
-        console.log(formData);
-        fetch('http://localhost:5000/products', {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
+        const image = form.image.files[0];
+
+        const formData = new FormData();
+        formData.append('image', image);
+
+        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
         })
-        .then(res => {
-            console.log('response complete : ', res);
-            form.reset();
-        })
-        .then(data => console.log(data))
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    const productInfo = {
+                        title,
+                        desc,
+                        price,
+                        condition,
+                        phone,
+                        location,
+                        image: imgData.data.url
+                    }
+                    fetch('http://localhost:5000/products', {
+                        method: "POST",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(productInfo)
+                    })
+                        .then(res => {
+                            console.log('response complete : ', res);
+                            form.reset();
+                        })
+                        .then(data => console.log(data))
+                }
+            })
+
     }
 
     return (
