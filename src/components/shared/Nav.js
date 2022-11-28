@@ -32,7 +32,7 @@ const Nav = () => {
                                 {navMenu}
                             </ul>
                         </div>
-                        <Link to="/" className="text-xl bg-primary p-2 rounded-lg font-bold text-white">RESELLER</Link>
+                        <Link to="/" className=""><img className='h-12' src="assets/logo.png" alt="" /></Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal p-0">
@@ -75,8 +75,11 @@ const Nav = () => {
                                                     <span className="badge">New</span>
                                                 </Link>
                                             </li>
+                                            {
+                                                isAdmin &&
+                                                <li><Link to="../dashboard">admin-dashboard</Link></li>
+                                            }
                                             <li><Link to="../seller-dashboard">seller-dashboard</Link></li>
-                                            <li><Link to="../dashboard">admin-dashboard</Link></li>
                                             <li onClick={handleLogout}><Link>Logout</Link></li>
                                         </ul>
                                     </div>

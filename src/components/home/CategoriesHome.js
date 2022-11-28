@@ -17,7 +17,7 @@ const CategoriesHome = () => {
             <SectionTitle title="Categories" />
             <div className='grid md:grid-cols-3 gap-5 mt-10'>
                 {
-                    CategoriesData.map(category => <Link to={`products/${category._id}`} key={category._id}><div className="flex items-center p-10 rounded-md bg-primary hover:opacity-90 text-white transition shadow-xl">
+                    CategoriesData.map(category => <Link to={`category/${category.category_id}`} key={category._id}><div className="flex items-center p-10 rounded-md bg-primary hover:opacity-90 text-white transition shadow-xl">
                         <img src={category.icon} alt="" className="rounded w-28 h-28 mr-3" />
                         <h2 className="text-3xl font-bold">{category.name}</h2>
                     </div></Link>)

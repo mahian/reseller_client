@@ -1,15 +1,28 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
+import { authContext } from '../../context/UserContext';
 
 const MyProducts = () => {
-    const { data: products = [] } = useQuery({
+    const {user} = useContext(authContext)
+    const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products');
+            const res = await fetch(`http://localhost:5000/myProducts?email=${user.email}`);
             const data = await res.json();
             return data;
         }
     });
+
+    const handleDelete = id => {
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => {
+            console.log(res)
+            refetch()
+        })
+        .then(err => console.log(err))
+    }
     return (
         <section className='bg-gray-100 py-20'>
             <div className='container mx-auto px-3'>
@@ -17,19 +30,23 @@ const MyProducts = () => {
                     <table className="table table-zebra w-full">
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>id</th>
+                                <th>image</th>
                                 <th>Name</th>
-                                <th>Job</th>
-                                <th>Favorite Color</th>
+                                <th>price</th>
+                                <th>status</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 products.map((product, index) => <tr key={product._id}>
                                     <th>{index + 1}</th>
-                                    <td>Cy Ganderton</td>
-                                    <td>Quality Control Specialist</td>
-                                    <td>Blue</td>
+                                    <td><img className='h-16 w-16 object-cover rounded-lg' src={product.image} alt="" /></td>
+                                    <td>{product.title}</td>
+                                    <td>{product.price}</td>
+                                    <td><p className='font-semibold text-green-400'>available</p></td>
+                                    <td><button onClick={()=> handleDelete(product._id)} className='btn btn-sm btn-error'>delete</button></td>
                                 </tr>)
                             }
 

@@ -1,27 +1,32 @@
 import React from 'react';
-import BookingModal from './BookingModal';
 
-const Product = ({info}) => {
-    const {title, desc, price, condition, image, date, userName, userImg, original_price} = info;
+const Product = ({ product, setProduct }) => {
+    const { title, price, condition, image, date, userName, userImg, original_price } = product;
     return (
         <div className="flex justify-center">
             <div className="rounded-lg shadow-lg bg-white">
                 <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-                    <img className="rounded-t-lg" src={image} alt="" />
+                    <img className="rounded-t-lg h-60 w-full object-cover" src={image} alt="" />
                 </a>
                 <div className="p-6">
-                    <h5 className="text-gray-900 text-xl font-medium mb-2">{title}</h5>
-                    <p className="text-gray-700 text-base mb-4">{desc}</p>
-                    <p className="text-gray-700 text-base mb-4">{original_price}</p>
-                    <p className="text-gray-700 text-base mb-4">{price}</p>
-                    <p className="text-gray-700 text-base mb-4">{condition}</p>
-                    <p className="text-gray-700 text-base mb-4">{date}</p>
-                    <img className='h-5' src={userImg} alt="" />
-                    <p className="text-gray-700 text-base mb-4">{userName}</p>
-                    <label htmlFor="booking-modal" className="cursor-pointer inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Book now</label>
+                    <h5 className="text-gray-900 text-xl font-bold mb-2">{title}</h5>
+                    <div className='flex items-center'>
+                        <h3 className="text-primary font-bold mr-3 text-3xl">{original_price}৳</h3>
+                        <p className="text-gray-500 font-semibold relative before:content-[''] before:w-full before:h-[1px] before:bg-gray-400 before:absolute before:top-[13px]">{price}৳</p>
+                    </div>
+                    <p className="text-gray-700 font-semibold mt-2"><strong>condition : </strong>{condition}</p>
+                    <div className='flex items-center mt-4 mb-7'>
+                        <img className='h-10 w-10 rounded-full' src={userImg} alt="" />
+                        <div className='ml-3'>
+                            <p className="text-gray-700 font-bold">{userName}</p>
+                            <p className="text-gray-700 text-xs font-semibold">{date}</p>
+                        </div>
+                    </div>
+                    <label htmlFor="booking-modal">
+                        <button onClick={() => setProduct(product)} className="w-full cursor-pointer px-6 py-2.5 bg-primary text-white font-medium uppercase rounded shadow-md hover:opacity-95 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:opacity-100 active:shadow-lg transition duration-150 ease-in-out">Book now</button>
+                    </label>
                 </div>
             </div>
-            <BookingModal info={info}/>
         </div>
     );
 };

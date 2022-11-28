@@ -26,7 +26,7 @@ export default function AddProduct() {
             let dd = String(today.getDate()).padStart(2, '0');
             let mm = String(today.getMonth() + 1).padStart(2, '0');
             let yyyy = today.getFullYear();
-    
+
             return `${dd}-${mm}-${yyyy}`;
         }
 
@@ -111,7 +111,7 @@ export default function AddProduct() {
                         </label>
                         <select name="category" className="select select-bordered">
                             {
-                                CategoriesData.map(category => <option key={category._id}>{category.name}</option>)
+                                CategoriesData.map((category, i) => <option value={i} key={category._id}>{category.name}</option>)
                             }
                         </select>
                     </div>

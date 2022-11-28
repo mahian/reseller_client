@@ -16,6 +16,7 @@ import SellerRoute from './components/privetRoute/SellerRoute';
 import AdminRoute from './components/privetRoute/AdminRoute';
 import SellerDashboard from './layout/SellerDashboard';
 import PrivetRoute from './components/privetRoute/PrivetRoute';
+import Blog from './components/home/Blog';
 
 function App() {
   const router = createBrowserRouter([
@@ -27,7 +28,12 @@ function App() {
         {path: 'login', element: <Login/>},
         {path: 'signup', element: <Signup/>},
         {path: 'products', element: <PrivetRoute><Products/></PrivetRoute>},
-        {path: 'products/:id', element: <PrivetRoute><ProductsUnderTheCategory/></PrivetRoute>},
+        {path: 'blog', element: <Blog/>},
+        {
+          path: 'category/:id',
+          element: <PrivetRoute><ProductsUnderTheCategory/></PrivetRoute>,
+          loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`)
+        },
         {path: "*", element: <Error/>}
       ]
     },

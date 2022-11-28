@@ -7,6 +7,7 @@ import Spinner from '../../utilities/Spinner';
 const AdminRoute = ({ children }) => {
     const { user, loading } = useContext(authContext);
     const [isAdmin, adminLoading] = useSeller(user?.email)
+    console.log(isAdmin);
     if (loading || adminLoading) {
         return <Spinner />
     }
