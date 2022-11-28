@@ -32,7 +32,7 @@ function App() {
         {
           path: 'category/:id',
           element: <PrivetRoute><ProductsUnderTheCategory/></PrivetRoute>,
-          loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`)
+          loader: ({params})=> fetch(`https://reseller-server.vercel.app/category/${params.id}`)
         },
         {path: "*", element: <Error/>}
       ]

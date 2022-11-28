@@ -9,7 +9,7 @@ const ProductContext = ({children}) => {
     const { data: products = [] } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products');
+            const res = await fetch('https://reseller-server.vercel.app/products');
             const data = await res.json();
             return data;
         }
@@ -19,7 +19,7 @@ const ProductContext = ({children}) => {
     const { data: limitedProducts = [] } = useQuery({
         queryKey: ['limitedProducts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/limitedProducts');
+            const res = await fetch('https://reseller-server.vercel.app/limitedProducts');
             const data = await res.json();
             return data;
         }

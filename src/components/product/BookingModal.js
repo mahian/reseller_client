@@ -35,7 +35,7 @@ const BookingModal = ({product, setProduct}) => {
             meet_location
         }
 
-        fetch('http://localhost:5000/order',{
+        fetch('https://reseller-server.vercel.app/order',{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderInfo)

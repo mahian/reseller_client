@@ -11,7 +11,7 @@ export default function AddProduct() {
     const { data: CategoriesData = [] } = useQuery({
         queryKey: ['CategoriesData'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories');
+            const res = await fetch('https://reseller-server.vercel.app/categories');
             const data = await res.json();
             return data;
         }
@@ -69,7 +69,7 @@ export default function AddProduct() {
                         userImg: user.photoURL,
                         date: getDate()
                     }
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://reseller-server.vercel.app/products', {
                         method: "POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(productInfo)

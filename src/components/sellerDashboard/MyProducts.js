@@ -7,14 +7,14 @@ const MyProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myProducts?email=${user.email}`);
+            const res = await fetch(`https://reseller-server.vercel.app/myProducts?email=${user.email}`);
             const data = await res.json();
             return data;
         }
     });
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://reseller-server.vercel.app/products/${id}`, {
             method: 'DELETE'
         })
         .then(res => {
