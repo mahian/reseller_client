@@ -2,7 +2,7 @@ import React from 'react';
 import BookingModal from './BookingModal';
 
 const Product = ({info}) => {
-    const {title, desc, price, condition, image, date, userName, userImg} = info;
+    const {title, desc, price, condition, image, date, userName, userImg, original_price} = info;
     return (
         <div className="flex justify-center">
             <div className="rounded-lg shadow-lg bg-white">
@@ -12,6 +12,7 @@ const Product = ({info}) => {
                 <div className="p-6">
                     <h5 className="text-gray-900 text-xl font-medium mb-2">{title}</h5>
                     <p className="text-gray-700 text-base mb-4">{desc}</p>
+                    <p className="text-gray-700 text-base mb-4">{original_price}</p>
                     <p className="text-gray-700 text-base mb-4">{price}</p>
                     <p className="text-gray-700 text-base mb-4">{condition}</p>
                     <p className="text-gray-700 text-base mb-4">{date}</p>
