@@ -95,7 +95,7 @@ const Signup = () => {
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input {...register("password", { required: true })} type="text" placeholder="password" className="input input-bordered" />
+                        <input {...register("password", { required: true })} type="password" placeholder="password" className="input input-bordered" />
                     </div>
 
                     <div className="form-control">

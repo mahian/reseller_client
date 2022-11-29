@@ -25,7 +25,7 @@ const Nav = () => {
         <nav className='shadow-sm'>
             <div className='container mx-auto'>
                 <div className="navbar">
-                    <div className="navbar-start">
+                    <div className="navbar-start relative">
                         <div className="dropdown">
                             <label tabIndex={0} className="btn btn-ghost lg:hidden">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -34,7 +34,7 @@ const Nav = () => {
                                 {navMenu}
                             </ul>
                         </div>
-                        <Link to="/" className=""><img className='h-12' src="assets/logo.png" alt="" /></Link>
+                        <Link to="/" className=""><img className='h-12 absolute top-0 md:static' src="assets/logo.png" alt="" /></Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal p-0">
@@ -42,7 +42,7 @@ const Nav = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <p className='mr-3 font-bold'>{isAdmin ? 'admin' : ''}{isSeller ? 'seller' : ''}{!isSeller && !isAdmin ? 'user' : ''}</p>
+                        <p className='mr-3 hidden md:block font-bold'>{isAdmin ? 'admin' : ''}{isSeller ? 'seller' : ''}{!isSeller && !isAdmin ? 'user' : ''}</p>
                         {
                             !user ?
                                 <Link to="../signup" className="btn">Sign up</Link> :
@@ -81,7 +81,10 @@ const Nav = () => {
                                                 isAdmin &&
                                                 <li><Link to="../dashboard">admin-dashboard</Link></li>
                                             }
-                                            <li><Link to="../seller-dashboard">seller-dashboard</Link></li>
+                                            {
+                                                isSeller &&
+                                                <li><Link to="../seller-dashboard">seller-dashboard</Link></li>
+                                            }
                                             <li onClick={handleLogout}><Link>Logout</Link></li>
                                         </ul>
                                     </div>

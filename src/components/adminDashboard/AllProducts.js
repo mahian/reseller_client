@@ -14,11 +14,11 @@ const AllProducts = () => {
         fetch(`https://reseller-server.vercel.app/products/${id}`, {
             method: 'DELETE'
         })
-        .then(res => {
-            console.log(res)
-            refetch()
-        })
-        .then(err => console.log(err))
+            .then(res => {
+                console.log(res)
+                refetch()
+            })
+            .then(err => console.log(err))
     }
     return (
         <section className='bg-gray-100 py-20'>
@@ -29,8 +29,9 @@ const AllProducts = () => {
                             <tr>
                                 <th>id</th>
                                 <th>image</th>
-                                <th>name</th>
-                                <th>category</th>
+                                <th>Name</th>
+                                <th>price</th>
+                                <th>status</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -38,13 +39,11 @@ const AllProducts = () => {
                             {
                                 products.map((product, index) => <tr key={product._id}>
                                     <th>{index + 1}</th>
-                                    <td>Cy Ganderton</td>
-                                    <td>Quality Control Specialist</td>
-                                    <td>Blue</td>
-                                    <td>
-                                        <button onClick={()=> handleDelete(product._id)} className="btn btn-sm btn-error mr-3">delete</button>
-                                        <button className="btn btn-sm btn-success">update</button>
-                                    </td>
+                                    <td><img className='h-16 w-16 object-cover rounded-lg' src={product.image} alt="" /></td>
+                                    <td>{product.title}</td>
+                                    <td>{product.price}</td>
+                                    <td><p className='font-semibold text-green-400'>available</p></td>
+                                    <td><button onClick={() => handleDelete(product._id)} className='btn btn-sm btn-error'>delete</button></td>
                                 </tr>)
                             }
 

@@ -56,7 +56,7 @@ const SellerDashboard = () => {
                     </nav>
                 </aside>
 
-                <main id="content" className="flex-1 p-6 lg:px-8 h-screen overflow-y-scroll no-scrollbar">
+                <main id="content" className="flex-1 md:p-6 lg:px-8 h-screen overflow-y-scroll">
                     <div className="max-w-7xl mx-auto">
                         <div className="px-4 py-6 sm:px-0">
                             <Outlet/>

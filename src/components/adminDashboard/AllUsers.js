@@ -30,6 +30,7 @@ const AllUsers = () => {
                                 <th>image</th>
                                 <th>name</th>
                                 <th>email</th>
+                                <th>Role</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -37,9 +38,10 @@ const AllUsers = () => {
                             {
                                 users.map((user, index) => <tr key={user._id}>
                                     <th>{index + 1}</th>
-                                    <td>Cy Ganderton</td>
+                                    <td><img className='h-12 w-12 object-cover rounded-full' src={user.image} alt="" /></td>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
+                                    <td>{user.role}</td>
                                     <td>
                                         <button onClick={()=> handleDelete(user._id)} className="btn btn-sm btn-error mr-3">delete</button>
                                     </td>

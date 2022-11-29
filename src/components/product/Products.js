@@ -34,7 +34,7 @@ const Products = () => {
                         </ul>
                     </div>
                 </div>
-                <div className='p-10 bg-white md:col-span-2 lg:col-span-3'>
+                <div className='py-10 px-3 md:px-10 bg-white md:col-span-2 lg:col-span-3'>
                     <h2 className='text-3xl font-semibold'>All Product</h2>
                     <div className='grid gap-5 md:grid-cols-2 lg:grid-cols-3 mt-5'>
                         {

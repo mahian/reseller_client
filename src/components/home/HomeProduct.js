@@ -16,7 +16,7 @@ const HomeProduct = () => {
             </div>
             {
                 product &&
-                <BookingModal setProduct={setProduct} product={product} />
+                <BookingModal product={product} setProduct={setProduct}/>
             }
         </div>
     );

@@ -3,7 +3,7 @@ import React from 'react';
 const Hero = () => {
     return (
         <section>
-            <div className="hero py-20 lg:min-h-[92vh]">
+            <div className="hero py-20 lg:min-h-[92vh]" style={{background: "linear-gradient(rgba(157, 215, 241, 0.8), rgba(255, 255, 255, 0)"}}>
                 <div className="hero-content grid md:grid-cols-2 gap-5">
                     <div>
                         <img className='w-full rounded-lg' src="assets/buyandsell.jpg" alt="" />

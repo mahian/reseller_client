@@ -6,11 +6,11 @@ import Nav from '../components/shared/Nav';
 const AdminDashboard = () => {
     return (
         <div>
-            <Nav/>
+            <Nav />
             <div className="relative min-h-screen md:flex" data-dev-hint="container">
                 <input type="checkbox" id="menu-open" className="hidden" />
 
-                <label htmlFor="menu-open" className="right-2 bottom-2 shadow-lg rounded-full p-2 bg-gray-100 text-gray-600 md:hidden" data-dev-hint="floating action button">
+                <label htmlFor="menu-open" className="absolute right-2 bottom-2 shadow-lg rounded-full p-2 bg-gray-100 text-gray-600 md:hidden" data-dev-hint="floating action button">
                     <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -38,10 +38,10 @@ const AdminDashboard = () => {
                         </Link>
                         <nav data-dev-hint="main navigation">
                             <Link to="all-users" className="flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">
-                                <UsersIcon className='h-6'/><span>All users</span>
+                                <UsersIcon className='h-6' /><span>All users</span>
                             </Link>
                             <Link to="all-products" className="flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">
-                                <ShoppingBagIcon className='h-6'/><span>All Products</span>
+                                <ShoppingBagIcon className='h-6' /><span>All Products</span>
                             </Link>
                         </nav>
                     </div>
@@ -56,10 +56,10 @@ const AdminDashboard = () => {
                     </nav>
                 </aside>
 
-                <main id="content" className="flex-1 p-6 lg:px-8 h-screen overflow-y-scroll">
+                <main id="content" className="flex-1 md:p-6 lg:px-8 h-screen overflow-y-scroll no-scrollbar">
                     <div className="max-w-7xl mx-auto">
                         <div className="px-4 py-6 sm:px-0">
-                            <Outlet/>
+                            <Outlet />
                         </div>
                     </div>
                 </main>

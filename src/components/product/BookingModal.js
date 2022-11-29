@@ -5,7 +5,6 @@ import { authContext } from '../../context/UserContext';
 const BookingModal = ({ product, setProduct }) => {
     const { user } = useContext(authContext);
     const { title, _id, price } = product;
-    console.log(product);
 
     const getDate = () => {
         let today = new Date();
@@ -39,17 +38,17 @@ const BookingModal = ({ product, setProduct }) => {
 
         fetch('https://reseller-server.vercel.app/order', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'content-type': 'application/json' },
             body: JSON.stringify(orderInfo)
         })
             .then(res => {
-                setProduct(null);
+                console.log(res);
                 Swal.fire(
                     'Good job!',
                     'that the item is booked!',
                     'success'
-                );
-                console.log(res);
+                    );
+                setProduct(null);
             })
             .then(data => console.log(data))
     }
