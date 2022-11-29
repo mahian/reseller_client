@@ -26,7 +26,7 @@ const BookingModal = ({ product, setProduct }) => {
         const meet_location = form.meet_location.value;
 
         const orderInfo = {
-            _id,
+            productId: _id,
             title,
             price,
             date,
