@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../context/UserContext";
+import Swal from 'sweetalert2'
 
 const imageHostKey = process.env.REACT_APP_imagebb_key;
 
@@ -65,7 +66,7 @@ export default function AddProduct() {
                         location,
                         image: imgData.data.url,
                         email: user.email,
-                        userName : user.displayName,
+                        userName: user.displayName,
                         userImg: user.photoURL,
                         date: getDate()
                     }
@@ -75,8 +76,12 @@ export default function AddProduct() {
                         body: JSON.stringify(productInfo)
                     })
                         .then(res => {
-                            console.log('response complete : ', res);
-                            navigate("../my-products")
+                            Swal.fire(
+                                'Good job!',
+                                'You clicked the button!',
+                                'success'
+                            );
+                            navigate("../my-products");
                             form.reset();
                         })
                         .then(data => console.log(data))

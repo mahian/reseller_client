@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { authContext } from '../context/UserContext';
 import LoginProvider from './shared/LoginProvider';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
     const navigate = useNavigate()
@@ -46,6 +47,11 @@ const Signup = () => {
                                         body: JSON.stringify(thisUser)
                                     }).then(res => {
                                         console.log("Request complete! response:", res);
+                                        Swal.fire(
+                                            'Good job!',
+                                            'You are successfully created this account!',
+                                            'success'
+                                        );
                                         navigate('/');
                                     });
                                 })

@@ -22,9 +22,7 @@ const Product = ({ product, setProduct }) => {
                             <p className="text-gray-700 text-xs font-semibold">{date}</p>
                         </div>
                     </div>
-                    <label htmlFor="booking-modal">
-                        <button onClick={() => setProduct(product)} className="w-full cursor-pointer px-6 py-2.5 bg-primary text-white font-medium uppercase rounded shadow-md hover:opacity-95 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:opacity-100 active:shadow-lg transition duration-150 ease-in-out">Book now</button>
-                    </label>
+                    <label htmlFor="booking-modal" onClick={() => setProduct(product)} className="w-full cursor-pointer px-6 py-2.5 bg-primary text-white font-medium uppercase rounded shadow-md hover:opacity-95 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:opacity-100 active:shadow-lg transition duration-150 ease-in-out">Book now</label>
                 </div>
             </div>
         </div>

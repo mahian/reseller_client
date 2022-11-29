@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
+import Swal from 'sweetalert2';
 import { authContext } from '../../context/UserContext';
 
-const BookingModal = ({product, setProduct}) => {
-    const {user} = useContext(authContext);
-    const {title, _id, price} = product;
+const BookingModal = ({ product, setProduct }) => {
+    const { user } = useContext(authContext);
+    const { title, _id, price } = product;
+    console.log(product);
 
     const getDate = () => {
         let today = new Date();
@@ -15,7 +17,7 @@ const BookingModal = ({product, setProduct}) => {
     }
     const date = getDate();
 
-    const handleSubmit = e =>{
+    const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
         const date = form.date.value;
@@ -35,16 +37,21 @@ const BookingModal = ({product, setProduct}) => {
             meet_location
         }
 
-        fetch('https://reseller-server.vercel.app/order',{
+        fetch('https://reseller-server.vercel.app/order', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderInfo)
         })
-        .then(res => {
-            console.log(res);
-        })
-        .then(data => console.log(data))
-        console.log(orderInfo);
+            .then(res => {
+                setProduct(null);
+                Swal.fire(
+                    'Good job!',
+                    'that the item is booked!',
+                    'success'
+                );
+                console.log(res);
+            })
+            .then(data => console.log(data))
     }
     return (
         <div>

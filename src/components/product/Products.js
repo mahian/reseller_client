@@ -29,7 +29,7 @@ const Products = () => {
                         <h2 className='text-2xl font-semibold'>product categories</h2>
                         <ul className="menu mt-3">
                             {
-                                CategoriesData.map(category => <li><Link>{category.name}</Link></li>)
+                                CategoriesData.map(category => <li key={category._id}><Link>{category.name}</Link></li>)
                             }
                         </ul>
                     </div>

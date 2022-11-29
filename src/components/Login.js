@@ -1,20 +1,26 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { authContext } from '../context/UserContext';
 import LoginProvider from './shared/LoginProvider';
 
 const Login = () => {
     const navigate = useNavigate()
     const { register, handleSubmit } = useForm();
-    const {signInWithEmail} = useContext(authContext);
+    const { signInWithEmail } = useContext(authContext);
     const onSubmit = data => {
         signInWithEmail(data.email, data.password)
-        .then(res => {
-            console.log(res);
-            navigate('/');
-        })
-        .then(err => console.log(err))
+            .then(res => {
+                Swal.fire(
+                    'Good job!',
+                    'You are successfully logged in!',
+                    'success'
+                );
+                navigate('/');
+                console.log(res);
+            })
+            .then(error => console.log(error))
     }
 
     return (
@@ -40,7 +46,7 @@ const Login = () => {
                     </div>
 
                     <div className="divider">OR</div>
-                    <LoginProvider/>
+                    <LoginProvider />
                 </form>
             </div>
         </div>
