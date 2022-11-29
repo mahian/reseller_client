@@ -2,6 +2,22 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Live Link
+
+https://reseller-a8ff7.web.app/
+
+## Project description
+
+This website is made for selling used products, it uses react in front end, node js in back end, and separate dashboard for admin and seller.
+
+## Project bullet points
+
+1/ Here the user is identified by 3 private routes
+2/ Using tanstack querie
+3/ including admin panel
+4/ users can buy product
+5/ sellers can upload and delete product
+
 ## Available Scripts
 
 In the project directory, you can run:
