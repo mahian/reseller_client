@@ -6,6 +6,7 @@ export const productContext = createContext()
 const ProductContext = ({children}) => {
     const [product, setProduct] = useState(null)
     const {user} = useContext(authContext);
+    const [loading, setLoading] = useState(true);
 
     // products
     const { data: products = [] } = useQuery({
@@ -13,6 +14,7 @@ const ProductContext = ({children}) => {
         queryFn: async () => {
             const res = await fetch('https://reseller-server.vercel.app/products');
             const data = await res.json();
+            setLoading(false)
             return data;
         }
     });
@@ -23,6 +25,7 @@ const ProductContext = ({children}) => {
         queryFn: async () => {
             const res = await fetch('https://reseller-server.vercel.app/limitedProducts');
             const data = await res.json();
+            setLoading(false)
             return data;
         }
     });
@@ -33,6 +36,7 @@ const ProductContext = ({children}) => {
         queryFn: async () => {
             const res = await fetch(`https://reseller-server.vercel.app/bookedOrders?email=${user?.email}`);
             const data = await res.json();
+            setLoading(false)
             return data;
         }
     });
@@ -44,7 +48,8 @@ const ProductContext = ({children}) => {
         limitedProducts,
         product,
         setProduct,
-        bookedOrders
+        bookedOrders,
+        loading
     }
     return (
         <div>

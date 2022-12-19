@@ -10,6 +10,7 @@ const Nav = () => {
     const { bookedOrders } = useContext(productContext);
     const [isSeller] = useSeller(user?.email);
     const [isAdmin] = useAdmin(user?.email);
+    console.log(isAdmin);
 
     const handleLogout = () => {
         logOut()

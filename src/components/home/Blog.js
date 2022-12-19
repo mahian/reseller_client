@@ -27,7 +27,7 @@ const Blog = () => {
         <div>
             <div className='container mx-auto px-3 py-10'>
                 {
-                    blogs.map(blog => <div className='mb-8'>
+                    blogs.map(blog => <div key={blog.id} className='mb-8'>
                         <h2 className='text-3xl font-bold'>{blog.title}</h2>
                         <p className='mt-3 text-gray-500'>{blog.desc}</p>
                     </div>)
